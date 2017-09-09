@@ -1,7 +1,3 @@
-<form method="POST" enctype="multipart/form-data" action="search.php">
-  <input type="text" name="a"/>
-  <input type="submit" value="送信" /><br><br>
-</form>
 <?php
 function gkwg($word){
 $url = "http://www.google.com/complete/search?hl=ja&output=toolbar&ie=utf_8&oe=utf_8&q=".urlencode($word);
@@ -16,7 +12,7 @@ $gkwg_xml = simplexml_load_file($url);
  }
 }
 function get_noun($txet){
-  $exe_path = 'C:/"Program Files (x86)"/MeCab/bin/mecab.exe';
+  $exe_path = '';
 	$descriptorspec = array(
 		0 => array("pipe", "r"),
 		1 => array("pipe", "w")
@@ -47,7 +43,6 @@ function get_noun($txet){
 }
 
 
-if(isset($_POST["a"])){
 $word=get_noun($_POST["a"]);
 echo $word."<br><br>";
 //$word=$_POST["a"]." ";
@@ -56,6 +51,5 @@ if($ar_gkwg){
 	foreach($ar_gkwg as $gkwg){
 		echo $gkwg.'<br>';
 	}
-}
 }
 ?>
